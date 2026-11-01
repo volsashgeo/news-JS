@@ -5,12 +5,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import DotenvWebpackPlugin from 'dotenv-webpack';
 
-// Статические импорты — вместо require() внутри функции
 import devConfig from './webpack.dev.config';
 import prodConfig from './webpack.prod.config';
 
 const baseConfig: Configuration = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
     module: {
         rules: [
@@ -18,10 +17,20 @@ const baseConfig: Configuration = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'ts-loader',
+                    options: {
+                        transpileOnly: false,
+                    },
+                },
+            },
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     output: {
         filename: 'index.js',

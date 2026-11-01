@@ -8,12 +8,13 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "strict": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
         "isolatedModules": true,
-        "paths": {}
+        "paths": {},
+        "noImplicitAny": true,
+        "noEmit": true,
+        "strict": true
     },
     "include": ["webpack.config.ts", "webpack.*.config.ts", "src/**/*"],
     "exclude": ["node_modules", "dist"]
