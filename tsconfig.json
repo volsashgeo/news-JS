@@ -13,7 +13,7 @@
         "isolatedModules": true,
         "paths": {},
         "noImplicitAny": true,
-        "noEmit": true,
+        "noEmit": false,
         "strict": true
     },
     "include": ["webpack.config.ts", "webpack.*.config.ts", "src/**/*"],
