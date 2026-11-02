@@ -3,33 +3,36 @@ import type { NewsSource } from './sources.types';
 
 class Sources {
     public draw(data: NewsSource[]): void {
-        const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
+        const container = document.querySelector<HTMLSelectElement>('.sources');
+        if (!container) {
+            throw new Error('Container .sources not found');
+        }
 
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
         if (!sourceItemTemp) {
             throw new Error('Template #sourceItemTemp not found');
         }
 
+        // сохраняем первую "заглушку" (disabled selected), остальные опции удаляем
+        while (container.options.length > 1) {
+            container.remove(1);
+        }
+
+        const fragment = document.createDocumentFragment();
+
         data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
+            const option = sourceClone.querySelector<HTMLOptionElement>('.source__item');
 
-            const nameEl = sourceClone.querySelector<HTMLElement>('.source__item-name');
-            if (nameEl) {
-                nameEl.textContent = item.name;
-            }
+            if (!option) return;
 
-            const itemEl = sourceClone.querySelector<HTMLElement>('.source__item');
-            if (itemEl) {
-                itemEl.setAttribute('data-source-id', item.id ?? '');
-            }
+            option.textContent = item.name;
+            option.value = item.id ?? '';
 
-            fragment.append(sourceClone);
+            fragment.append(option);
         });
 
-        const container = document.querySelector<HTMLElement>('.sources');
-        if (container) {
-            container.appendChild(fragment);
-        }
+        container.appendChild(fragment);
     }
 }
 

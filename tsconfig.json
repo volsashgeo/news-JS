@@ -12,6 +12,7 @@
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,
         "paths": {},
+        "outDir": "./dist",
         "noImplicitAny": true,
         "noEmit": false,
         "strict": true

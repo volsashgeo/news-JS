@@ -17,7 +17,7 @@ class App {
             throw new Error('Element .sources not found');
         }
 
-        sourcesContainer.addEventListener('click', (event) => {
+        sourcesContainer.addEventListener('change', (event) => {
             this.controller.getNews(event, (data) => this.view.drawNews(data));
         });
 

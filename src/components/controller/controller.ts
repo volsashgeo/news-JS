@@ -8,29 +8,23 @@ class AppController extends AppLoader {
         super.getResp<SourcesResponse>({ endpoint: 'sources' }, callback);
     }
 
-    public getNews(event: MouseEvent, callback: NewsCallback): void {
-        const target = event.target;
-        const container = event.currentTarget;
+public getNews(event: Event, callback: NewsCallback): void {
+    const target = event.target;
 
-        if (!(target instanceof HTMLElement) || !(container instanceof HTMLElement)) {
-            return;
-        }
-
-        let node: HTMLElement | null = target;
-
-        while (node && node !== container) {
-            if (node.classList.contains('source__item')) {
-                const sourceId = node.getAttribute('data-source-id');
-
-                if (sourceId && container.getAttribute('data-source') !== sourceId) {
-                    container.setAttribute('data-source', sourceId);
-                    super.getResp<NewsResponse>({ endpoint: 'everything', options: { sources: sourceId } }, callback);
-                }
-                return;
-            }
-            node = node.parentElement;
-        }
+    if (!(target instanceof HTMLSelectElement)) {
+        return;
     }
+
+    const sourceId = target.value;
+
+    if (sourceId && target.getAttribute('data-source') !== sourceId) {
+        target.setAttribute('data-source', sourceId);
+        super.getResp<NewsResponse>(
+            { endpoint: 'everything', options: { sources: sourceId } },
+            callback
+        );
+    }
+}
 }
 
 export default AppController;
