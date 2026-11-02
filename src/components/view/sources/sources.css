@@ -2,8 +2,11 @@
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    height: 120px;
+    height: 40px;
     overflow: auto;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 8px 12px;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
 }
@@ -15,7 +18,6 @@
     line-height: 1;
     margin: 0.5em;
     padding: 1em 2em;
-    color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
 }
