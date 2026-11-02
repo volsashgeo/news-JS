@@ -18,18 +18,31 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
+
 footer .copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
 }
-footer .copyright a {
+
+footer .copyright a,
+.github,
+span {
     color: #444;
 }
-footer .copyright a:hover {
+
+footer .copyright a:hover,
+.github:hover {
     color: #555;
 }
+
 footer .copyright:before {
     content: '©';
+}
+
+.logo {
+    width: 30px;
+    aspect-ratio: 1;
 }
